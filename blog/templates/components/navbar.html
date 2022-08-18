@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-success bg-opacity-50">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'blog-home' %}">Djanpost</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="{% url 'blog-home' %}">Home</a>
+        <a class="nav-link" href="{% url 'blog-about' %}">About</a>
+      </div>
+    </div>
+    <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated%}
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="{% url 'blog-profile' %}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="px-2">
+                  {% if user.is_superuser == 1 %}
+                  <span class="badge bg-primary">
+                      {{ user.username }}</span>
+                  {% else %}
+                    {{ user.username }}
+                  {% endif %}
+              </span>
+          <img src="{{ user.profile.image.url}}" class="rounded-circle" style="float:right; height:2rem; width:2rem">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="{% url 'post-create' %}">Create Post</a></li>
+            <li><a class="dropdown-item" href="{% url 'blog-profile' %}">Account</a></li>
+            <hr>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+          </ul>
+        </li>
+        {% else %}
+        <li><a href="{% url 'login' %}" class="nav-link active">Login</a></li>
+        <li><a href="{% url 'blog-register' %}" class="nav-link">Register</a></li>
+        {% endif %}
+      </ul>
+  </div>
+</nav>

@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% include 'components/navbar.html' %}
+ <div class="my-5 col-lg-5 mx-auto">
+     <div class="row">
+         <div class="col-lg">
+             <div class="p-5">
+                 <div class="text-center">
+                     <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                 </div>
+                 <form method="POST">
+                     {% csrf_token %}
+                     <div class="form-group mb-3">
+                         {{ form|crispy }}
+                     </div>
+                     <div class="d-grid gap-2 mb-3">
+                         <button type="submit" class="btn btn-primary">Register</button>
+                     </div>
+                 </form>
+                 <hr>
+                 <div class="text-center">
+                     <a class="small text-decoration-none" href="{% url 'password-reset' %}">Forgot Password?</a>
+                 </div>
+                 <div class="text-center">
+                     <a class="small text-decoration-none" href="{% url 'login' %}">Already have an account? Login!</a>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+{% endblock %}

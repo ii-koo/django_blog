@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% include 'components/navbar.html' %}
+ <div class="my-5 col-lg-5 mx-auto">
+     <div class="row">
+         <div class="col-lg">
+             <h2 class="text-center">You have been already log out</h2>
+             <hr>
+             <a href="{% url 'login' %}" class="text-decoration-none">Login again</a>
+         </div>
+     </div>
+ </div>
+{% endblock %}
